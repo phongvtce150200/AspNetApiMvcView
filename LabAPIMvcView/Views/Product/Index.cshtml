@@ -1,0 +1,48 @@
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+@* Link CSS *@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+
+<a asp-controller="Product" asp-action="Create" asp class="btn btn-primary">Create New</a>
+<table class="table table-border" id="example">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Weight</th>
+            <th>Unit Price</th>
+            <th>Unit in stock</th>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.productId</td>
+                <td>@obj.productName</td>
+                <td>@obj.weight</td>
+                <td>@obj.unitPrice</td>
+                <td>@obj.unitslnStock</td>
+                <td><a asp-controller="Product" asp-action="Edit" asp-route-Id="@obj.productId" class="btn btn-primary">Update</a></td>
+                <td><a asp-controller="Product" asp-action="Delete" asp-route-Id="@obj.productId" asp class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@* Link script *@
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+@*script *@
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
